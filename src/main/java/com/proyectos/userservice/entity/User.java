@@ -32,5 +32,4 @@ public class User {
     private Date created;
     private Date lastLogin;
     private List<Phone> phones;
-    private Roles role;
 }
