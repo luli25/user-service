@@ -1,4 +1,4 @@
-package com.proyectos.userservice.constants;
+package com.proyectos.userservice.constant;
 
 public class Constants {
 
