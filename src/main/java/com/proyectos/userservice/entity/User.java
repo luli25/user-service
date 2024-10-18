@@ -3,10 +3,7 @@ package com.proyectos.userservice.entity;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -31,5 +28,7 @@ public class User {
     private boolean isActive;
     private Date created;
     private Date lastLogin;
+    @OneToMany
+    @JoinColumn(columnDefinition = "phone_id")
     private List<Phone> phones;
 }

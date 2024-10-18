@@ -8,12 +8,14 @@ import com.proyectos.userservice.exception.EmailAlreadyExistsException;
 import com.proyectos.userservice.exception.InvalidDataException;
 import com.proyectos.userservice.repository.PhoneRepository;
 import com.proyectos.userservice.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -43,7 +45,8 @@ public class UserServiceImpl implements UserService {
 
     private boolean validateSignUpData(SignUpDTO signUpDTO) {
         if(!signUpDTO.getEmail().isEmpty() && !signUpDTO.getPassword().isEmpty()) {
-            if(signUpDTO.getEmail().matches(Constants.EMAIL_VALIDATION_REGEX)) {
+            if(signUpDTO.getEmail().matches(Constants.EMAIL_VALIDATION_REGEX) && signUpDTO.getPassword()
+                    .matches(Constants.PASSWORD_VALIDATION_REGEX)) {
                 return true;
             } else {
                 return false;
@@ -58,6 +61,7 @@ public class UserServiceImpl implements UserService {
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(request.getPassword())
+                .token("token")
                 .phones(request.getPhones())
                 .isActive(true)
                 .created(new Date())
