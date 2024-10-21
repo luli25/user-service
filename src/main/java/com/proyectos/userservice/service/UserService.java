@@ -1,7 +1,8 @@
 package com.proyectos.userservice.service;
 
 import com.proyectos.userservice.DTOs.SignUpDTO;
+import com.proyectos.userservice.entity.User;
 
 public interface UserService {
-    void signUp(SignUpDTO signUpRequest);
+    User signUp(SignUpDTO signUpRequest);
 }

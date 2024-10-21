@@ -11,7 +11,6 @@ import com.proyectos.userservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void signUp(SignUpDTO signUpRequest) {
+    public User signUp(SignUpDTO signUpRequest) {
         if(validateSignUpData(signUpRequest)) {
             User user = userRepository.findByEmail(signUpRequest.getEmail());
             Phone phones = signUpRequest.getPhones().stream().findAny().get();
@@ -41,6 +40,7 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new InvalidDataException("Invalid data");
         }
+        return null;
     }
 
     private boolean validateSignUpData(SignUpDTO signUpDTO) {
