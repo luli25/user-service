@@ -1,6 +1,7 @@
-package com.proyectos.userservice.utils;
+package com.proyectos.userservice.config;
 
 import com.proyectos.userservice.service.CustomUserDetails;
+import com.proyectos.userservice.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
