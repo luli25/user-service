@@ -3,6 +3,7 @@ package com.proyectos.userservice.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtToken {
+public class JwtUtil {
 
     private String secret_key = "secret";
 
@@ -50,6 +51,11 @@ public class JwtToken {
                 .setExpiration(new Date(System.currentTimeMillis() + 100 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256, secret_key)
                 .compact();
+    }
+
+    public boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
 }
